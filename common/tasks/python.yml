@@ -1,0 +1,12 @@
+---
+- name: python install
+  raw: apt-get install python
+
+- name: Ensure that Python2 packages are present
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - python-dev
+    - python-pip
