@@ -1,0 +1,5 @@
+---
+- name: "Set localtime at {{ timezone }}"
+  timezone:
+   name: "{{ timezone }}"
+  notify: restart crond
