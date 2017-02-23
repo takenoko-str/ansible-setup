@@ -1,0 +1,23 @@
+---
+- name: Set my profile
+  file:
+    path: /etc/profile.d/{{ my_profile }}
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Set env variables in profile.d/*
+  lineinfile:
+    dest: /etc/profile.d/{{ my_profile }}
+    create: yes
+    line: "{{ item }}"
+    state: present
+  with_items:
+    - "alias sgrep='egrep -v "^\s*(#|$)" --color=auto'"
+    - "alias ssh-pub='ssh-keygen -y -f $1'"
+    - "alias stat='stat --format "%a %U %G %n"'"
+    - "alias cgrep='egrep -v "^\s*(#$|#\s|$)" --color=auto'"
+    - "alias grep='grep --color=auto'"
+    - "alias ls='ls -F --color=auto --show-control-chars'"
+    - "alias lt='ls -ltr'"
