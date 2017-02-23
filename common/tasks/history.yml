@@ -1,0 +1,18 @@
+---
+- name: Set history size
+  replace:
+    dest: "{{ item }}"
+    regexp: "^HISTSIZE.*"
+    replace: "HISTORY=5000"
+  with_items:
+    - /etc/skel/.bashrc
+    - /root/.bashrc
+
+- name: Set history format
+  replace:
+    dest: "{{ item }}"
+    regexp: "^^HISTTIMEFORMAT.*"
+    replace: "HISTTIMEFORMAT='%Y-%m-%d %T '"
+  with_items:
+    - /etc/skel/.bashrc
+    - /root/.bashrc
