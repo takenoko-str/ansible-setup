@@ -3,6 +3,13 @@
   become: yes
   hosts: all
   gather_facts: False
+  vars:
+    proxy: http://proxy:3128
+    yum_cfg: /etc/yum.conf
   tasks:
-    - name: raw install
+    - name: add proxy
+      raw:  if grep "proxy" /etc/yum.conf -q; then echo "proxy={{ proxy }}" >> {{ yum_cfg }}; fi
+      when: proxy is defined
+
+- name: raw install
       raw: yum install -y python-simplejson
