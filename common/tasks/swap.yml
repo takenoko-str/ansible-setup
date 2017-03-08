@@ -22,10 +22,10 @@
       state: present
   when: swapfile_size is defined
 
-  - name: Create swapfile
-    command: mkswap {{ swapfile_path }}
-    when: write_swapfile.changed
+- name: Create swapfile
+  command: mkswap {{ swapfile_path }}
+  when: write_swapfile.changed
 
-  - name: Enable swapfile
-    command: swapon {{ swapfile_path }}
-    when: ansible_swaptotal_mb < 1
+- name: Enable swapfile
+  command: swapon {{ swapfile_path }}
+  when: ansible_swaptotal_mb < 1
