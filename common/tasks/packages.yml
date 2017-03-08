@@ -5,12 +5,6 @@
     state: present
     update_cache: yes
   with_items:
-    - python-dev
-    - python-pip
-    - docker-py
-    - git
-    - tig
-    - vim
-    - vim-syntax-docker
-    - vim-python-jedi
-    - vim-editorconfig
+    - {{ vim_packages }}
+    - {{ git_packages }}
+    - {{ python_packages }}
