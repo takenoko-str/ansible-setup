@@ -1,0 +1,12 @@
+vim_packages:
+  - vim
+  - vim-syntax-docker
+  - vim-python-jedi
+  - vim-editorconfig
+git_packages:
+  - git
+  - tig
+python_packages:
+  - python-dev
+  - python-pip
+  - docker-py
