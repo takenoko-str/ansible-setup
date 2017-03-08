@@ -1,6 +1,5 @@
 ---
 - block:
-  # !-certify swapfile size
   - name: Write swapfile
     command: fallocate -l {{ swapfile_size }} {{ swapfile_path }}
     args:
@@ -12,14 +11,6 @@
       path: "{{ swapfile_path }}"
       mode: 0600
 
-  - name: Create swapfile
-    command: mkswap {{ swapfile_path }}
-    when: write_swapfile.changed
-
-  - name: Enable swapfile
-    command: swapon {{ swapfile_path }}
-    when: ansible_swaptotal_mb < 1
-
   - name: Write swap entry in /etc/fstab
     mount:
       name: none
@@ -29,6 +20,12 @@
       passno: 0
       dump: 0
       state: present
+  when: swapfile_size is defined
 
-  # !-certify swapfile size
-  when: swapfile_size != false
+  - name: Create swapfile
+    command: mkswap {{ swapfile_path }}
+    when: write_swapfile.changed
+
+  - name: Enable swapfile
+    command: swapon {{ swapfile_path }}
+    when: ansible_swaptotal_mb < 1
