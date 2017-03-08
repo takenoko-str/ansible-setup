@@ -8,7 +8,7 @@
     yum_cfg: /etc/yum.conf
   tasks:
     - name: add proxy
-      raw:  if [ ! $(egrep "^proxy=" /etc/yum.conf) ]; then echo "proxy={{ proxy }}" >> {{ yum_cfg }}; fi
+      raw:  if ! grep -E "^proxy=" /etc/yum.conf -q; then echo "proxy={{ proxy }}" >> {{ yum_cfg }}; fi
       when: proxy is defined
 
 - name: raw install
