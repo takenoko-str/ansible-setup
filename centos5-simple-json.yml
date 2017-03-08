@@ -1,0 +1,8 @@
+---
+- name: Apply first configuration to centos5 nodes
+  become: yes
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: raw install
+      raw: yum install -y python-simplejson
