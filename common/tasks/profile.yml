@@ -14,10 +14,4 @@
     line: "{{ item }}"
     state: present
   with_items:
-    - "alias sgrep='egrep -v "^\s*(#|$)" --color=auto'"
-    - "alias ssh-pub='ssh-keygen -y -f $1'"
-    - "alias stat='stat --format "%a %U %G %n"'"
-    - "alias cgrep='egrep -v "^\s*(#$|#\s|$)" --color=auto'"
-    - "alias grep='grep --color=auto'"
-    - "alias ls='ls -F --color=auto --show-control-chars'"
-    - "alias lt='ls -ltr'"
+    - {{ alias_profile }}
