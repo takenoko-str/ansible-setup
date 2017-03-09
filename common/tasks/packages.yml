@@ -8,3 +8,5 @@
     - {{ vim_packages }}
     - {{ git_packages }}
     - {{ python_packages }}
+    - {{ haskell_pakeges }}
+    - {{ ocaml_packges }}
