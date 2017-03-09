@@ -10,6 +10,13 @@ python_packages:
   - python-dev
   - python-pip
   - docker-py
+ocaml_packages:
+  - ocaml-nox
+  - ocaml
+  - opam
+  - rlwrap
+haskell_packages:
+  - haskell-platform
 alias_profile:
   - "alias sgrep='egrep -v "^\s*(#|$)" --color=auto'"
   - "alias ssh-pub='ssh-keygen -y -f $1'"
