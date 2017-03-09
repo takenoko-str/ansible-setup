@@ -11,10 +11,16 @@
 
   tasks:
     - name: add proxy
-      raw: "{{ item }}"
+      raw: >
+        echo -e "" > {{ apt_cfg }}
+        if ! grep "Proxy" /etc/apt/* -RIq; then
+          echo "Acquire::{{ item }}::Proxy \"{{ proxy }}\";" >> {{ apt_cfg }}
+        fi
       with_items:
-        - echo "Acquire::http::proxy \"{{ proxy }}\";" > {{ apt_cfg }}
-        - echo "Acquire::https::proxy \"{{ proxy }}\";" >> {{ apt_cfg }}
+        - http
+        - https
+      args:
+        executable: /bin/bash
       when: proxy is defined
       
     - name: raw install python
