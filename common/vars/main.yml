@@ -17,6 +17,8 @@ ocaml_packages:
   - rlwrap
 haskell_packages:
   - haskell-platform
+shellscript_packages:
+  - shellcheck
 alias_profile:
   - "alias sgrep='egrep -v "^\s*(#|$)" --color=auto'"
   - "alias ssh-pub='ssh-keygen -y -f $1'"
