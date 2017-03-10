@@ -10,3 +10,4 @@
     - {{ python_packages }}
     - {{ haskell_pakeges }}
     - {{ ocaml_packges }}
+    - {{ shellscript_packages }}
