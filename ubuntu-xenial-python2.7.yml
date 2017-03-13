@@ -11,7 +11,7 @@
   tasks:
     - name: ensure that proxy is written on apt.conf.d/*
       raw: grep -E "Acquire::http[s]::Proxy\s+\"{{ proxy }}\";" /etc/apt/* -RIq
-      register: result
+      register: proxy_result
       ignore_errors: True
 
     - name: set Acquire Proxy on apt.conf.d/30proxy
@@ -19,8 +19,13 @@
         echo -e "Acquire::https::Proxy \"{{ proxy }}\";\nAcquire::http::Proxy \"{{ proxy }}\";" > {{ apt_cfg }}
       args:
         executable: /bin/bash
-      when: result|failed and proxy is defined
+      when: proxy_result|failed and proxy is defined
 
+    - name: ensure that python is installed
+      raw: which python
+      register:python_result
+      ignore_error: True
+      
     - name: raw install python
       raw: apt-get -y install python
-      when: result|failed
+      when: python_result|failed
