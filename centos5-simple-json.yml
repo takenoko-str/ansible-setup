@@ -9,13 +9,18 @@
   tasks:
     - name: add proxy
       raw:  grep -E "^proxy={{ proxy }}" /etc/yum.conf -q
-      register: result
+      register: proxy_result
       ignore_errors: True
 
     - name: set proxy on {{ yum_cfg }}
       raw: sed -i "s|proxy=.*|proxy={{ proxy }}|g" {{ yum_cfg }}
-      when: result|failed and proxy is defined
+      when: proxy_result|failed and proxy is defined
+
+    - name: ensure that simplejson is installed.
+      raw: rpm -qa | grep python-simplejson -q
+      register: proxy_python
+      ignore_errors: True
 
     - name: raw install simplejson
       raw: yum install -y python-simplejson
-      when: result|failed
+      when: python_result|failed
