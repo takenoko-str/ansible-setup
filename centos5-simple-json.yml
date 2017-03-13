@@ -25,3 +25,8 @@
     - name: raw install simplejson
       raw: yum install -y python-simplejson
       when: python_result|failed and EOL|int < 2020
+
+    - name: Check your python's End of Life
+      debug:
+        msg: huh, your server has python2, go over to python3 ...
+      when: EOL|int >= 2020
