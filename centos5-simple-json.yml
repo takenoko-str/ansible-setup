@@ -6,6 +6,7 @@
   vars:
     proxy: http://proxy:3128/
     yum_cfg: /etc/yum.conf
+    EOL: "{{ lookup('pipe', 'date +%Y') }}"
   tasks:
     - name: add proxy
       raw:  grep -E "^proxy={{ proxy }}" /etc/yum.conf -q
@@ -23,4 +24,4 @@
 
     - name: raw install simplejson
       raw: yum install -y python-simplejson
-      when: python_result|failed
+      when: python_result|failed and EOL|int < 2020
