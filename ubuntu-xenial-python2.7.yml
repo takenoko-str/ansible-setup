@@ -23,7 +23,7 @@
 
     - name: ensure that python is installed
       raw: which python
-      register:python_result
+      register: python_result
       ignore_error: True
       
     - name: raw install python
