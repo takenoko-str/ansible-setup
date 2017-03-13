@@ -14,7 +14,7 @@
       ignore_errors: True
 
     - name: set proxy on {{ yum_cfg }}
-      raw: sed -i "s|proxy=.*|proxy={{ proxy }}|g" {{ yum_cfg }}
+      raw: sed -i "s|^proxy=.*|proxy={{ proxy }}|g" {{ yum_cfg }}
       when: proxy_result|failed and proxy is defined
 
     - name: ensure that simplejson is installed.
