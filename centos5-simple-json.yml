@@ -1,18 +1,21 @@
 ---
-- name: Apply first configuration to centos5 nodes
+- name: Apply initial conditions to connect ansible on centos 5 nodes
   become: yes
   hosts: all
   gather_facts: False
   vars:
-    proxy: http://proxy:3128
+    proxy: http://proxy:3128/
     yum_cfg: /etc/yum.conf
   tasks:
     - name: add proxy
-      raw:  >
-          if ! grep -E "^proxy=" /etc/yum.conf -q; then
-              echo "proxy={{ proxy }}" >> {{ yum_cfg }};
-          fi
-      when: proxy is defined
+      raw:  grep -E "^proxy={{ proxy }}" /etc/yum.conf -q
+      register: result
+      ignore_errors: True
 
-- name: raw install
+    - name: set proxy on {{ yum_cfg }}
+      raw: sed -i "s|proxy=.*|proxy={{ proxy }}|g" {{ yum_cfg }}
+      when: result|failed and proxy is defined
+
+    - name: raw install simplejson
       raw: yum install -y python-simplejson
+      when: result|failed
