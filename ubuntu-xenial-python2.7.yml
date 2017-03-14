@@ -25,7 +25,7 @@
     - name: ensure that python is installed
       raw: which python
       register: python_result
-      ignore_error: True
+      ignore_errors: True
       
     - name: raw install python
       raw: apt-get -y install python
