@@ -27,6 +27,8 @@ alias_profile:
   - "alias grep='grep --color=auto'"
   - "alias ls='ls -F --color=auto --show-control-chars'"
   - "alias lt='ls -ltr'"
+  - "alias ocaml='rlwrap ocaml'"
+  - "alias sh='rlwrap sh'"
 export_lists:
   - export EC2_INI_PATH=""
   - export TF_VAR_access_key=""
