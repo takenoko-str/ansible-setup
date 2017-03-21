@@ -1,0 +1,6 @@
+- name:
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - {{ requirement_pip }}
+  
