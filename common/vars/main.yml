@@ -20,6 +20,7 @@ requirement_pip:
   - ansible
   - redis
   - bson
+  - autopep8
 ocaml_packages:
   - ocaml-nox
   - ocaml
