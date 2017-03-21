@@ -1,3 +1,8 @@
+system_packages:
+  - libssl-ocaml-dev
+  - libssl-ocaml
+  - libssl-dev
+  - libssl
 vim_packages:
   - vim
   - vim-syntax-docker
@@ -10,6 +15,11 @@ python_packages:
   - python-dev
   - python-pip
   - docker-py
+requirement_pip:
+  - boto3
+  - ansible
+  - redis
+  - bson
 ocaml_packages:
   - ocaml-nox
   - ocaml
