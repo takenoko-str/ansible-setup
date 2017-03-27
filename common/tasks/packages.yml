@@ -1,7 +1,7 @@
 ---
 - name: Ensure that Python2 packages are present
   apt:
-    pkg: "{{ item }}"
+    name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
