@@ -15,12 +15,15 @@ python_packages:
   - python-dev
   - python-pip
   - docker-py
+  - pylint
 requirement_pip:
   - boto3
   - ansible
   - redis
   - bson
   - autopep8
+  - radon
+  - clonedigger
 ocaml_packages:
   - ocaml-nox
   - ocaml
